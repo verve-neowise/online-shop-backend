@@ -17,6 +17,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const auth_route_1 = __importDefault(require("./routes/auth.route"));
 const users_route_1 = __importDefault(require("./routes/users.route"));
 const admin_route_1 = __importDefault(require("./routes/admin.route"));
+const api_route_1 = __importDefault(require("./routes/api.route"));
 const auth_middleware_1 = __importDefault(require("./security/auth.middleware"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
@@ -37,6 +38,7 @@ app.use(auth_middleware_1.default);
 app.use('/auth', auth_route_1.default);
 app.use('/', users_route_1.default);
 app.use('/admin', admin_route_1.default);
+app.use('/api', api_route_1.default);
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

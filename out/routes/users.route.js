@@ -28,7 +28,7 @@ router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* 
             username: username
         };
         let token = jsonwebtoken_1.default.sign(data, process.env.JWT_SECRET, {
-            expiresIn: '1h'
+            expiresIn: '10h'
         });
         res.status(200).send({
             error: null,
@@ -59,7 +59,7 @@ router.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, functio
         username: username
     };
     let token = jsonwebtoken_1.default.sign(data, process.env.JWT_SECRET, {
-        expiresIn: '1h'
+        expiresIn: '10h'
     });
     res.status(200).send({
         error: null,

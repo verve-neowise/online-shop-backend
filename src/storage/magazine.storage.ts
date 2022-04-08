@@ -18,6 +18,12 @@ async function allMagazines() {
     return datas.map(mapMagazine)
 }
 
+async function findMagazine(id: string) {
+    let query = 'SELECT * FROM magazines WHERE id = $1;'
+    let data = await storage.get(query, [id])
+    return mapMagazine(data)
+}
+
 function mapMagazine(data: any) {
     return data ? new Magazine(
         data.id,
@@ -29,5 +35,6 @@ function mapMagazine(data: any) {
 
 export default {
     addMagazine,
+    findMagazine,
     allMagazines
 }

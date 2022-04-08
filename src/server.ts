@@ -15,6 +15,7 @@ import cookieParser from 'cookie-parser'
 import authRoute from './routes/auth.route'
 import usersRoute from './routes/users.route'
 import adminRoute from './routes/admin.route'
+import apiRoute from './routes/api.route'
 
 import authMiddleware from './security/auth.middleware'
 
@@ -42,6 +43,7 @@ app.use(authMiddleware)
 app.use('/auth', authRoute)
 app.use('/', usersRoute)
 app.use('/admin', adminRoute)
+app.use('/api', apiRoute)
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {

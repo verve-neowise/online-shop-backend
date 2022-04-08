@@ -14,26 +14,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const storage_1 = __importDefault(require("./storage"));
 const product_model_1 = __importDefault(require("../model/product.model"));
-function addProduct(product) {
+function addItem(userId, productId) {
     return __awaiter(this, void 0, void 0, function* () {
-        let query = 'INSERT INTO products (mid, name, photo, price) values($1, $2, $3, $4)';
+        let query = 'INSERT INTO carts (user_id, product_id) values($1, $2)';
         yield storage_1.default.run(query, [
-            product.mid,
-            product.name,
-            product.photo,
-            product.price
+            userId, productId
         ]);
     });
 }
-function findProducts(mid) {
+function allItems(userId) {
     return __awaiter(this, void 0, void 0, function* () {
         let query = `SELECT
                      products.id as id, products.mid as mid,
                      products.name as name, products.photo as photo,
                      products.price as price, magazines.name as magazine
-                FROM products INNER JOIN magazines ON magazines.id = products.mid
-                WHERE mid = $1`;
-        let datas = yield storage_1.default.all(query, [mid]);
+                FROM products
+                INNER JOIN magazines ON magazines.id = products.mid
+                LEFT JOIN carts ON products.id = carts.product_id
+                WHERE carts.user_id = $1`;
+        let datas = yield storage_1.default.all(query, [userId]);
         return datas.map(mapProduct);
     });
 }
@@ -41,6 +40,6 @@ function mapProduct(data) {
     return data ? new product_model_1.default(data.id, data.mid, data.name, data.photo, data.price, data.magazine) : undefined;
 }
 exports.default = {
-    addProduct,
-    findProducts
+    addItem,
+    allItems
 };

@@ -22,7 +22,7 @@ router.post('/login', async (req, res) => {
         }
 
         let token = jwt.sign(data, process.env.JWT_SECRET!, {
-             expiresIn: '1h'
+             expiresIn: '10h'
         })
 
         res.status(200).send({
@@ -62,7 +62,7 @@ router.post('/register', async (req, res) => {
     }
 
     let token = jwt.sign(data, process.env.JWT_SECRET!, {
-        expiresIn: '1h'
+        expiresIn: '10h'
     })
 
     res.status(200).send({

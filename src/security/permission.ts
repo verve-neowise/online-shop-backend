@@ -12,9 +12,7 @@ const openRoutes = [
 ]
 
 permitFor(Role.User, [
-    '^/magazines',
-    '^/products',
-    '^/cart'
+    '^/api'
 ])
 
 permitFor(Role.Admin, [

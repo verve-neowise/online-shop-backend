@@ -6,15 +6,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const permission_1 = require("./permission");
 function default_1(req, res, next) {
+    console.log(req.url);
     if ((0, permission_1.isOpen)(req.url)) {
         return next();
     }
     const token = req.session.token || req.header('Authorization');
     const isApi = req.session.token ? false : true;
+    console.log('Authorized');
     // Not authorized
     if (!token) {
         return isApi ? res.sendStatus(401) : res.redirect('/auth');
     }
+    console.log('Authorized', token);
     let payload = verify(token);
     // No has token
     if (!payload) {

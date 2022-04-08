@@ -12,9 +12,7 @@ const openRoutes = [
     '/register',
 ];
 permitFor(user_model_1.Role.User, [
-    '^/magazines',
-    '^/products',
-    '^/cart'
+    '^/api'
 ]);
 permitFor(user_model_1.Role.Admin, [
     '^/admin',

@@ -31,10 +31,18 @@ function allMagazines() {
         return datas.map(mapMagazine);
     });
 }
+function findMagazine(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let query = 'SELECT * FROM magazines WHERE id = $1;';
+        let data = yield storage_1.default.get(query, [id]);
+        return mapMagazine(data);
+    });
+}
 function mapMagazine(data) {
     return data ? new magazine_model_1.default(data.id, data.name, data.category, data.color) : undefined;
 }
 exports.default = {
     addMagazine,
+    findMagazine,
     allMagazines
 };

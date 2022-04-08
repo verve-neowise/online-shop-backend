@@ -18,8 +18,9 @@ router.post('/magazine', async (req, res) => {
 })
 
 router.get('/magazine/:id', async (req, res) => {
+    let magazine = await magazineStorage.findMagazine(req.params.id)
     let products = await productStorage.findProducts(req.params.id)
-    res.render('products', { products, mid: req.params.id })
+    res.render('products', { magazine, products, mid: req.params.id })
 })
 
 router.post('/product/:mid', async (req, res) => {

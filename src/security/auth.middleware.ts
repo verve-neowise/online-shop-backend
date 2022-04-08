@@ -12,6 +12,7 @@ declare module "express-session" {
 }
 
 export default function(req: Request, res: Response, next: NextFunction) {
+    console.log(req.url);
     
     if (isOpen(req.url)) {
         return next()
@@ -19,10 +20,13 @@ export default function(req: Request, res: Response, next: NextFunction) {
     const token = req.session.token || req.header('Authorization')
     const isApi = req.session.token ? false : true
 
+    console.log('Authorized');
+
     // Not authorized
     if (!token) {
         return isApi ? res.sendStatus(401) : res.redirect('/auth')
     }
+    console.log('Authorized', token);
 
     let payload = verify(token)
     

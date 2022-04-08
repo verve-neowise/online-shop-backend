@@ -26,8 +26,9 @@ router.post('/magazine', (req, res) => __awaiter(void 0, void 0, void 0, functio
     res.redirect('/admin');
 }));
 router.get('/magazine/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let magazine = yield magazine_storage_1.default.findMagazine(req.params.id);
     let products = yield product_storage_1.default.findProducts(req.params.id);
-    res.render('products', { products, mid: req.params.id });
+    res.render('products', { magazine, products, mid: req.params.id });
 }));
 router.post('/product/:mid', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let product = req.body;

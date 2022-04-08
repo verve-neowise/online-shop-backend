@@ -4,4 +4,6 @@ export type JwtData = {
     username: string,
     userId: number,
     role: Role,
+    iat?: number,
+    exp?: number
 }

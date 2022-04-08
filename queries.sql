@@ -22,3 +22,10 @@ CREATE TABLE products (
     photo    VARCHAR (256),
     price    REAL
 );
+
+
+CREATE TABLE carts (
+    id             SERIAL       PRIMARY KEY,
+    user_id        INTEGER,
+    product_id     INTEGER
+);
