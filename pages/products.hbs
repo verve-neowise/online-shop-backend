@@ -1,0 +1,111 @@
+    <div class="container-sm p-5">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3>Products</h3>
+                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addMagazineModal">
+                        Add Product
+                    </button>
+                </div>
+                <div class="card-body">
+                    
+                    <table class="table mt-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Photo</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each products}}
+                            <tr>
+                                <th scope="row">{{id}}</th>
+                                <td>{{name}}</td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm" href="{{photo}}">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        Photo
+                                    </a>
+                                </td>
+                                <td>{{price}}</td>
+                                <td>
+                                    <a class="btn btn-danger btn-sm" href="/admin/product/{{id}}/delete">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+
+<div class="modal fade" id="addMagazineModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add Magazine</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/product/{{mid}}" method="post" class="modal-body" autocomplete="off">
+                <div class="mb-3">
+                    <input name="name" type="text" class="form-control" placeholder="Name">
+                </div>
+
+                <div class="mb-3">
+                    <input name="photo" type="text" class="form-control" placeholder="Photo url">
+                </div>
+
+                <div class="mb-3">
+                    <input name="price" type="number" class="form-control" placeholder="Price">
+                </div>
+
+                <hr class="divider">
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addProductModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/product" method="post" class="modal-body" autocomplete="off">
+                <div class="mb-3">
+                    <input name="name" type="text" class="form-control" placeholder="Name">
+                </div>
+
+                <div class="mb-3">
+                    <input name="photo" type="text" class="form-control" placeholder="Photo">
+                </div>
+
+                <div class="mb-3">
+                    <input name="price" type="number" class="form-control" placeholder="Price">
+                </div>
+
+                <div class="mb-3">
+                    <select name="mid" class="form-control">
+                        <option value="{{id}}">Magazine</option>
+                    </select>
+                </div>
+
+                <hr class="divider">
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

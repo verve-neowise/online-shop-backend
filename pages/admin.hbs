@@ -1,0 +1,106 @@
+    <div class="container-sm p-5">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3>Magazines</h3>
+                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addMagazineModal">
+                        Add Magazine
+                    </button>
+                </div>
+                <div class="card-body">
+                    
+                    <table class="table mt-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Goto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each magazines}}
+                            <tr>
+                                <th scope="row">{{id}}</th>
+                                <td>{{name}}</td>
+                                <td>{{category}}</td>
+                                <td>{{color}}</td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm" href="/admin/magazine/{{id}}">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        Products
+                                    </a>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+
+<div class="modal fade" id="addMagazineModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add Magazine</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/magazine" method="post" class="modal-body" autocomplete="off">
+                <div class="mb-3">
+                    <input name="name" type="text" class="form-control" placeholder="Name">
+                </div>
+
+                <div class="mb-3">
+                    <input name="category" type="text" class="form-control" placeholder="Category">
+                </div>
+
+                <div class="mb-3">
+                    <input name="color" type="text" class="form-control" placeholder="Color">
+                </div>
+
+                <hr class="divider">
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addProductModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/product" method="post" class="modal-body" autocomplete="off">
+                <div class="mb-3">
+                    <input name="name" type="text" class="form-control" placeholder="Name">
+                </div>
+
+                <div class="mb-3">
+                    <input name="photo" type="text" class="form-control" placeholder="Photo">
+                </div>
+
+                <div class="mb-3">
+                    <input name="price" type="number" class="form-control" placeholder="Price">
+                </div>
+
+                <div class="mb-3">
+                    <select name="mid" class="form-control">
+                        <option value="{{id}}">Magazine</option>
+                    </select>
+                </div>
+
+                <hr class="divider">
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
