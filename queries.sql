@@ -29,3 +29,5 @@ CREATE TABLE carts (
     user_id        INTEGER,
     product_id     INTEGER
 );
+
+-- asdasdasd
